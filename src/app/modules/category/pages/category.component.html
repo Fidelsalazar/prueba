@@ -1,0 +1,39 @@
+  <app-navbar></app-navbar>
+  <div class="cards" *ngFor="let category of categories">
+
+    <div class="card" (click)="openDialogWithViewForm(category)">
+      <div class="card__image-holder">
+        <img class="card__image" src="https://source.unsplash.com/300x225/?wave" alt="wave" />
+      </div>
+      <div class="card-title">
+  
+        <h2>
+            {{category.name}}
+            <small>Description</small>
+        </h2>
+      </div>
+      <div class="card-flap flap1">
+        <div class="card-description">
+          {{category.description}}
+        </div>
+    
+      </div>
+    </div>
+  
+  
+  </div> 
+
+  <ng-container *ngIf="showModal">
+    <div class="modal-backdrop">
+    </div>
+    <div class="modal-container fadeInDown">
+      <ng-container *ngTemplateOutlet="templateViewForm"></ng-container>
+    </div>
+  </ng-container>
+      
+  <ng-template #templateViewForm>
+    <app-viewform/>
+  </ng-template>
+
+
+

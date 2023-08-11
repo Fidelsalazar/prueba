@@ -1,0 +1,49 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="HeadModal">
+      <h3>Create Category</h3>
+    </div>
+
+    <form [formGroup]="createForm" (ngSubmit)="onSendRute(createForm.value)">
+      <input 
+        type="text"
+        id="name"
+        class="fadeIn second"
+        formControlName="name"
+        placeholder="Name"
+        
+      >
+
+      <div *ngIf="name?.hasError('required')">
+        Name is required.
+      </div>
+
+      <div *ngIf="name?.hasError('minlength')">
+        Name must be at least 5 characters long.
+      </div>
+
+      <input
+        type="text"
+        id="description"
+        class="fadeIn second"
+        formControlName="description"
+        placeholder="Description"
+      >
+      <div *ngIf="name?.hasError('required')">
+        Name is required.
+      </div>
+    
+
+    <!-- Close Footer-->
+    <div id="formFooter">
+      <input
+          type="submit"
+          class="fadeIn fourth"
+          value="Create"
+          [disabled]="createForm.invalid"
+      >
+    </div>
+  </form>
+
+  </div>
+</div>

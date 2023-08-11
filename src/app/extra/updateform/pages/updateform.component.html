@@ -1,0 +1,64 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="HeadModal">
+      <h3>Update Category</h3>
+    </div>
+
+    <form [formGroup]="modForm" (ngSubmit)="onSendRute(modForm.value)">
+      
+      <div *ngIf="selectedCategory" class="selected-category">
+        Selected: {{ selectedCategory.name }} - {{ selectedCategory.description }}
+      </div>
+
+      <input 
+        type="text"
+        id="name"
+        class="fadeIn second"
+        formControlName="name"
+        placeholder="Name"
+        (focus)="showCategoryList = true"
+        (blur)="onBlur()"
+        [value]="selectedCategory ? selectedCategory.name : ''" 
+      >
+
+        <div *ngIf="showCategoryList" class="suggestion">
+          <div *ngFor="let result of categories" class="suggestion-item" (click)="selectCategory(result)">
+            {{ result.name }}
+          </div>
+        </div>
+
+      <div *ngIf="name?.hasError('required')">
+        Name is required.
+      </div>
+
+      <div *ngIf="name?.hasError('minlength')">
+        Name must be at least 5 characters long.
+      </div>
+
+      <input
+        type="text"
+        id="description"
+        class="fadeIn second"
+        formControlName="description"
+        placeholder="Description"
+        (blur)="onBlur()"
+        [value]="selectedCategory ? selectedCategory.description : ''" 
+      >
+      
+      <div *ngIf="modForm.controls['description']?.invalid && modForm.controls['description']?.hasError('required')" class="error-message">
+        Description is required.
+      </div>   
+
+    <!-- Close Footer-->
+    <div id="formFooter">
+      <input
+          type="submit"
+          class="fadeIn fourth"
+          value="Update"
+          [disabled]="modForm.invalid"
+      >
+    </div>
+  </form>
+
+  </div>
+</div>
